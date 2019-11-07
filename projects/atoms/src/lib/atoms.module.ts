@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AtomsComponent } from './atoms.component';
-import { BtnCallToActionComponent } from './btn-call-to-action/btn-call-to-action.component';
-
-
+import { InputComponent } from './input/input.component';
 
 @NgModule({
-  declarations: [AtomsComponent, BtnCallToActionComponent],
-  imports: [
-  ],
-  exports: [AtomsComponent, BtnCallToActionComponent]
+  declarations: [InputComponent],
+  imports: [],
+  exports: []
 })
 export class AtomsModule { }
