@@ -1,0 +1,305 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "atoms": {
+      "projectType": "library",
+      "root": "projects/atoms",
+      "sourceRoot": "projects/atoms/src",
+      "prefix": "stks",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/atoms/tsconfig.lib.json",
+            "project": "projects/atoms/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/atoms/src/test.ts",
+            "tsConfig": "projects/atoms/tsconfig.spec.json",
+            "karmaConfig": "projects/atoms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/atoms/tsconfig.lib.json",
+              "projects/atoms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "stonks": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/stonks",
+      "sourceRoot": "projects/stonks/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/stonks",
+            "index": "projects/stonks/src/index.html",
+            "main": "projects/stonks/src/main.ts",
+            "polyfills": "projects/stonks/src/polyfills.ts",
+            "tsConfig": "projects/stonks/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/stonks/src/favicon.ico",
+              "projects/stonks/src/assets"
+            ],
+            "styles": [
+              "projects/stonks/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/stonks/src/environments/environment.ts",
+                  "with": "projects/stonks/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "stonks:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "stonks:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "stonks:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/stonks/src/test.ts",
+            "polyfills": "projects/stonks/src/polyfills.ts",
+            "tsConfig": "projects/stonks/tsconfig.spec.json",
+            "karmaConfig": "projects/stonks/karma.conf.js",
+            "assets": [
+              "projects/stonks/src/favicon.ico",
+              "projects/stonks/src/assets"
+            ],
+            "styles": [
+              "projects/stonks/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/stonks/tsconfig.app.json",
+              "projects/stonks/tsconfig.spec.json",
+              "projects/stonks/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/stonks/e2e/protractor.conf.js",
+            "devServerTarget": "stonks:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "stonks:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "molecules": {
+      "projectType": "library",
+      "root": "projects/molecules",
+      "sourceRoot": "projects/molecules/src",
+      "prefix": "stks",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/molecules/tsconfig.lib.json",
+            "project": "projects/molecules/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/molecules/src/test.ts",
+            "tsConfig": "projects/molecules/tsconfig.spec.json",
+            "karmaConfig": "projects/molecules/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/molecules/tsconfig.lib.json",
+              "projects/molecules/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "organisms": {
+      "projectType": "library",
+      "root": "projects/organisms",
+      "sourceRoot": "projects/organisms/src",
+      "prefix": "stks",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/organisms/tsconfig.lib.json",
+            "project": "projects/organisms/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/organisms/src/test.ts",
+            "tsConfig": "projects/organisms/tsconfig.spec.json",
+            "karmaConfig": "projects/organisms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/organisms/tsconfig.lib.json",
+              "projects/organisms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "templates": {
+      "projectType": "library",
+      "root": "projects/templates",
+      "sourceRoot": "projects/templates/src",
+      "prefix": "stks",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/templates/tsconfig.lib.json",
+            "project": "projects/templates/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/templates/src/test.ts",
+            "tsConfig": "projects/templates/tsconfig.spec.json",
+            "karmaConfig": "projects/templates/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/templates/tsconfig.lib.json",
+              "projects/templates/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "pages": {
+      "projectType": "library",
+      "root": "projects/pages",
+      "sourceRoot": "projects/pages/src",
+      "prefix": "stks",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/pages/tsconfig.lib.json",
+            "project": "projects/pages/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/pages/src/test.ts",
+            "tsConfig": "projects/pages/tsconfig.spec.json",
+            "karmaConfig": "projects/pages/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/pages/tsconfig.lib.json",
+              "projects/pages/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "stonks"
+}
